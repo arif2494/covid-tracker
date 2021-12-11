@@ -23,7 +23,7 @@ const OverView = ({ data }) => {
         </div>
       </div>
       <p className='text-xs text-gray-400'>
-        Data Updated Today : {format(new Date(data.updated), "mm-hh-a")}
+        Data Updated Today : {format(new Date(data.updated), "hh-mm-a")}
       </p>
     </div>
   );
