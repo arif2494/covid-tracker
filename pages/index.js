@@ -1,4 +1,5 @@
 import CountryTable from "../components/Home/CountryTable";
+import HistoryChart from "../components/Home/HistoryChart";
 import OverView from "../components/Home/OverView";
 
 export const getServerSideProps = async () => {
@@ -8,8 +9,10 @@ export const getServerSideProps = async () => {
     "https://corona.lmao.ninja/v2/countries?yesterday&sort"
   );
   const countryData = await res2.json();
+  const res3 = await fetch("https://api.covidtracking.com/v1/us/daily.json");
+  const historyData = await res3.json();
 
-  if (!data || !countryData) {
+  if (!data || !countryData || !historyData) {
     return {
       notFound: true,
     };
@@ -19,15 +22,17 @@ export const getServerSideProps = async () => {
     props: {
       data,
       countryData,
+      historyData,
     },
   };
 };
-export default function Home({ data, countryData }) {
+export default function Home({ data, countryData, historyData }) {
   return (
     <div className='container mx-auto'>
       <OverView data={data}></OverView>
-      <div className='grid grid-cols-2'>
+      <div className='grid grid-cols-2 gap-2'>
         <CountryTable data={countryData}></CountryTable>
+        <HistoryChart data={historyData}></HistoryChart>
       </div>
     </div>
   );
