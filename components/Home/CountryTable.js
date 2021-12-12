@@ -1,22 +1,24 @@
+import Link from "next/link";
+
 const CountryTable = ({ data }) => {
   return (
     <div className='mt-6'>
       <h2 className='my-2 text-center text-2xl underline decoration-sky-500'>
-        Reported Cases and Deaths by Country
+        Reported Cases and Deaths of All USA States
       </h2>
       <div className='grid grid-cols-1'>
         <div className='inline-grid grid-cols-6 gap-1 mb-1'>
           <div className='py-3 px-6 font-semibold  bg-slate-300 text-slate-700 rounded'>
-            Country
+            State
           </div>
           <div className='py-3 px-6 font-semibold  bg-slate-300 text-slate-700 rounded'>
-            Confirmed
+            Positive
           </div>
           <div className='py-3 px-6 font-semibold  bg-slate-300 text-slate-700 rounded'>
-            Active
+            Negative
           </div>
           <div className='py-3 px-6 font-semibold  bg-slate-300 text-slate-700 rounded'>
-            Recovered
+            Hospitalized
           </div>
           <div className='py-3 px-6 font-semibold  bg-slate-300 text-slate-700 rounded'>
             Tested
@@ -28,16 +30,18 @@ const CountryTable = ({ data }) => {
       </div>
 
       {data.map((country, index) => (
-        <div key={country.country} className='grid grid-cols-1'>
+        <div key={country.state} className='grid grid-cols-1'>
           <div className='inline-grid grid-cols-6 gap-1 mb-1 '>
             <div
               className={
                 index % 2 === 0
-                  ? "py-3 px-6 bg-slate-50 text-slate-600 rounded"
-                  : "py-3 px-6 bg-slate-100 text-slate-600 rounded"
+                  ? "py-3 px-6 bg-slate-50 text-slate-600 rounded hover:underline "
+                  : "py-3 px-6 bg-slate-100 text-slate-600 rounded hover:underline "
               }
             >
-              {country.country}
+              <Link href={"/" + country.state}>
+                <a> {country.state}</a>
+              </Link>
             </div>
             <div
               className={
@@ -46,7 +50,7 @@ const CountryTable = ({ data }) => {
                   : "py-3 px-6 bg-slate-100 text-slate-600 rounded"
               }
             >
-              {country.cases}
+              {country.positive}
             </div>
             <div
               className={
@@ -55,7 +59,7 @@ const CountryTable = ({ data }) => {
                   : "py-3 px-6 bg-slate-100 text-slate-600 rounded"
               }
             >
-              {country.active}
+              {country.negative}
             </div>
             <div
               className={
@@ -64,7 +68,7 @@ const CountryTable = ({ data }) => {
                   : "py-3 px-6 bg-slate-100 text-slate-600 rounded"
               }
             >
-              {country.recovered}
+              {country.hospitalized}
             </div>
             <div
               className={
@@ -73,7 +77,7 @@ const CountryTable = ({ data }) => {
                   : "py-3 px-6 bg-slate-100 text-slate-600 rounded"
               }
             >
-              {country.tests}
+              {country.totalTestResults}
             </div>
             <div
               className={
@@ -82,7 +86,7 @@ const CountryTable = ({ data }) => {
                   : "py-3 px-6 bg-slate-100 text-slate-600 rounded"
               }
             >
-              {country.deaths}
+              {country.death}
             </div>
           </div>
         </div>

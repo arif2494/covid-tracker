@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 import { VscThreeBars } from "react-icons/vsc";
 const Header = () => {
@@ -6,12 +7,11 @@ const Header = () => {
     <nav className='relative flex flex-wrap items-center justify-between px-2 py-2 bg-indigo-600 mb-3'>
       <div className='container px-4 mx-auto flex flex-wrap items-center justify-between'>
         <div className='w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start'>
-          <a
-            className='text-2xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white'
-            href='#pablo'
-          >
-            Covid Tracker
-          </a>
+          <Link href='/'>
+            <a className='text-2xl font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white'>
+              Covid Tracker
+            </a>
+          </Link>
           <button
             className='text-white cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none'
             type='button'
